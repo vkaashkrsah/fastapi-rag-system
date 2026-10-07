@@ -1,0 +1,7 @@
+Example company handbook — fictional demonstration data
+
+The AI/ML internship team works on document understanding and conversational AI. Python, REST APIs, embeddings, and vector databases are useful skills.
+
+The selection process includes a backend assignment followed by a technical interview. Candidates should be able to explain document ingestion, chunking, retrieval, and conversation memory.
+
+The example office operates Monday through Friday. Remote work arrangements must be confirmed directly with the hiring team. This sample is not an official Palm Mind policy.

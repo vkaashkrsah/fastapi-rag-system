@@ -1,0 +1,36 @@
+services:
+  api:
+    build: .
+    env_file: .env
+    environment:
+      QDRANT_URL: http://qdrant:6333
+      REDIS_URL: redis://redis:6379/0
+      DATABASE_URL: sqlite:////app/data/app.db
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - app_data:/app/data
+    depends_on:
+      redis:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+    restart: on-failure
+  qdrant:
+    image: qdrant/qdrant:v1.19.2
+    volumes:
+      - qdrant_data:/qdrant/storage
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+volumes:
+  app_data:
+  qdrant_data:
+  redis_data:
